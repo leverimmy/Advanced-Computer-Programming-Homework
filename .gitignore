@@ -1,6 +1,9 @@
 # VSCode
 .vscode/
 
+# PDF report files
+*.pdf
+
 # Prerequisites
 *.d
 
