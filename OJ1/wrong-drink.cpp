@@ -47,16 +47,24 @@ int main() {
     // 按照浓度排序
     sort(wines.begin(), wines.end());
 
-    Wine* d; // 链表头节点
+    Wine* d = nullptr; // 链表头节点
     for (int i = 0; i < n; ++i) {
         auto q = new Wine;
         q->d = wines[i].first;
         q->p = wines[i].second;
         while (d != nullptr && d->last != nullptr) {
+            if (q->d == d->d) {
+                if (q->p < d->p) {
+                    d->p = q->p;
+                }
+                break;
+            }
             // 若在最后两点连线下方, 则替换掉最后一个点
             if ((q->p - d->p) / (q->d - d->d) <=
                     (d->p - d->last->p) / (d->d - d->last->d)) {
-                d = d->last;
+                Wine* lst = d->last;
+                delete d;
+                d = lst;
             } else {
                 break;
             }
@@ -65,24 +73,38 @@ int main() {
         if (!d || q->d != d->d) {
             q->last = d;
             d = q;
+        } else {
+            delete q;
         }
     }
 
     // 将链表转换回数组以便二分查找
     wines.clear();
-    for (auto i = d; i; i = i->last) {
+    for (auto i = d; i; ) {
         wines.push_back(dpair(i->d, i->p));
+        Wine* lst = i->last;
+        delete i;
+        i = lst;
     }
     reverse(wines.begin(), wines.end());
 
     for (int i = 0; i < m; ++i) {
         int q;
         scanf("%d", &q);
-        // 二分查找 q 所在的线段
-        auto it = lower_bound(wines.begin(), wines.end(), dpair(q, 0));
-        auto ib = it - 1;
-        double res = (it->first - q) / (double)(it->first - ib->first) * ib->second;
-        res += (q - ib->first) / (double)(it->first - ib->first) * it->second;
-        printf("%.2lf", res);
+        if (q < wines.front().first || q > wines.back().first) {
+            puts("-1");
+        } else if (q == wines.front().first) {
+            printf("%d.00\n", wines.front().second);
+        } else if (q == wines.back().first) {
+            printf("%d.00\n", wines.back().second);
+        } else {
+            // 二分查找 q 所在的线段
+            auto it = lower_bound(wines.begin(), wines.end(), dpair(q, 0));
+            auto ib = it - 1;
+            double res = (it->first - q) / (double)(it->first - ib->first) * ib->second;
+            res += (q - ib->first) / (double)(it->first - ib->first) * it->second;
+            printf("%.2lf\n", res);
+        }
     }
+    return 0;
 }
