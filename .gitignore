@@ -4,6 +4,11 @@
 # PDF report files
 *.pdf
 
+# Data files
+*.in
+*.out
+*.ans
+
 # Prerequisites
 *.d
 

@@ -3,11 +3,11 @@
 #include <stdexcept>
 
 // 填空定义
-#define FILL_1  InvalidInitialDepositException()
-#define FILL_2  amount < 0
-#define FILL_3  amount > balance
-#define FILL_4  InsufficientFundsException()
-#define FILL_5  InvalidInitialDepositException
+#define FILL_1 InvalidInitialDepositException()
+#define FILL_2 amount < 0
+#define FILL_3 balance < amount
+#define FILL_4 InsufficientFundsException()
+#define FILL_5 InvalidInitialDepositException
 
 // 自定义异常类
 class InvalidInitialDepositException : public std::exception {
