@@ -4,6 +4,9 @@
 # PDF report files
 *.pdf
 
+# Microsoft Word report files
+*.docx
+
 # Data files
 *.in
 *.out
