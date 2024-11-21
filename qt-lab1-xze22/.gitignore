@@ -1,0 +1,12 @@
+build/
+build-test/
+
+# Mac specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini

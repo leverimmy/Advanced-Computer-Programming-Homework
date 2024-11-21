@@ -1,0 +1,27 @@
+lab2/
+├── src/
+│   ├── core/
+│   │   ├── Game.h              // 游戏核心逻辑
+│   │   ├── Game.cpp
+│   │   ├── Ball.h              // 球类定义
+│   │   ├── Ball.cpp
+│   │   ├── Path.h              // 路径系统
+│   │   ├── Path.cpp
+│   │   ├── Shooter.h           // 发射器
+│   │   ├── Shooter.cpp
+│   │   ├── CollisionSystem.h   // 碰撞系统
+│   │   └── CollisionSystem.cpp
+│   │
+│   ├── ui/
+│   │   ├── MainWindow.h        // 主窗口
+│   │   ├── MainWindow.cpp
+│   │   ├── GameWidget.h        // 游戏画布
+│   │   ├── GameWidget.cpp
+│   │   ├── ScoreBoard.h        // 计分板
+│   │   └── ScoreBoard.cpp
+│   │
+│   └── main.cpp
+|
+├── lab2.pro
+├── lab2-test.pro
+└── README.md

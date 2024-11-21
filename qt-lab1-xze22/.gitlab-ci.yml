@@ -1,0 +1,40 @@
+stages:
+  - build
+  - test
+  - upload_artifacts
+
+build-linux:
+  stage: build
+  image: stateoftheartio/qt6:6.7-gcc-aqt
+  script:
+    - sudo apt update -q && sudo apt install -y -q libgl1-mesa-dev
+    - mkdir build
+    - cd build
+    - qmake ../lab1.pro
+    - make
+
+build-mingw32:
+  stage: build
+  image: stateoftheartio/qt6:6.7-mingw-aqt
+  script:
+    - mkdir build && cd build
+    - wine $HOME/.wine/drive_c/Qt/6.7.0/mingw_64/bin/qmake.exe ../lab1.pro
+    - wine $HOME/.wine/drive_c/Qt/Tools/mingw1120_64/bin/mingw32-make.exe
+    - wine $HOME/.wine/drive_c/Qt/6.7.0/mingw_64/bin/windeployqt.exe release/
+  artifacts:
+    paths:
+      - build/release/
+
+test-undo:
+  stage: test
+  needs:
+    - job: build-linux
+      optional: false
+  image: stateoftheartio/qt6:6.7-gcc-aqt
+  script:
+    - sudo apt update -q && sudo apt install -y -q libgl1-mesa-dev
+    - mkdir build-test
+    - cd build-test
+    - qmake ../lab1-tests.pro
+    - make
+    - QT_QPA_PLATFORM=offscreen ./lab1-tests

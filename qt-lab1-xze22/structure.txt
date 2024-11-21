@@ -1,0 +1,26 @@
+lab1/
+├── src/
+│   ├── core/
+│   │   ├── Game.h
+│   │   ├── Game.cpp
+│   │   ├──   Player.h
+│   │   ├──   Player.cpp
+│   │   ├──   Board.h
+│   │   ├──   Board.cpp
+│   │   ├──     Piece.h
+│   │   └──     Piece.cpp
+│   │
+│   │── ui/
+│   │   ├── MainWindow.h
+│   │   ├── MainWindow.cpp
+│   │   ├──   BoardWidget.h
+│   │   ├──   BoardWidget.cpp
+│   │   ├──   PlayerInfoWidget.h
+│   │   ├──   PlayerInfoWidget.cpp
+│   │   ├──   OperationWidget.h
+│   │   └──   OperationWidget.cpp
+│   │
+│   └── main.cpp
+|
+├── lab1.pro
+└── README.md
